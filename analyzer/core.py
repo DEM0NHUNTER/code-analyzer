@@ -17,7 +17,7 @@ class CodeAnalyzer:
             blocks = cc_visit(code)
 
             for block in blocks:
-                # We only care about functions (type 'F') or methods (type 'M')
+                # Only care about functions (type 'F') or methods (type 'M')
                 if hasattr(block, 'name') and hasattr(block, 'complexity'):
                     is_complex = block.complexity > 10
 
@@ -30,8 +30,7 @@ class CodeAnalyzer:
                     metrics.append(metric)
 
         except SyntaxError as e:
-            # Senior Move: Don't crash the server if the user sends bad code.
-            # We catch the syntax error and return an empty list (or could raise a custom error).
+            # Catch the syntax error and return an empty list (or could raise a custom error).
             print(f"Syntax Error parsing snippet: {e}")
             return []
 
